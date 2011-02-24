@@ -4,8 +4,17 @@ darribas-python-tools
 __author__ = "Dani Arribas-Bel daniel.arribas.bel@gmail.com"
 
 description = 
-'''
-This is a collection of several tools I have written in Python for a diverse
-range of tasks, likely not interconnected between them.
-'''
+    '''
+    This is a collection of several tools I have written in Python for a diverse
+    range of tasks, likely not interconnected between them.
+    '''
 
+installation = 
+    '''
+    If you want to access them from your computer, clone a copy of the repo
+    and add it to your ~/.bashrc or ~/.bash_profile with the following
+    command:
+
+        export PYTHONPATH=${PYTHONPATH}:"/path/to/folder/darribas-python-tools/"
+    
+    '''
