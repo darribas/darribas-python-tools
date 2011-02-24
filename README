@@ -1,0 +1,11 @@
+'''
+darribas-python-tools
+'''
+__author__ = "Dani Arribas-Bel daniel.arribas.bel@gmail.com"
+
+description = 
+'''
+This is a collection of several tools I have written in Python for a diverse
+range of tasks, likely not interconnected between them.
+'''
+
