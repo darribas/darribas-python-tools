@@ -18,3 +18,7 @@ installation =
         export PYTHONPATH=${PYTHONPATH}:"/path/to/folder/darribas-python-tools/"
     
     '''
+
+Current tools include:
+
+    > Maptrix: visualization of matrices
