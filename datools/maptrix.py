@@ -30,11 +30,17 @@ class Maptrix:
                   Original matrix
     y           : array
                   Matrix reversed so the plot looks as expected
+
+    Methods
+    -------
+    show        : Displays the figure
+    save        : Saves the figure to a file (requires to pass a path). Does
+                  not work if 'show' has been initialized
     '''
     def __init__(self, x, xlabels=False, ylabels=False, colorbar=True,
             cmap='summer'):
         y = np.zeros(x.shape)
-        for i in np.arange(x.shape[0]):
+        for i in np.arange(y.shape[1]):
             y[:, i] = x[:, i][:: -1]
         p = pl.pcolor(y, cmap=cmap)
         if colorbar:
@@ -79,4 +85,11 @@ class Maptrix:
     def show(self):
         pl.show()
 
+    def save(self, path):
+        pl.savefig(path)
 
+if __name__ == '__main__':
+    z = np.zeros((10, 20))
+    z[0, 0] = 100
+    z[9, 19] = 10
+    m = Maptrix(z).show()
