@@ -21,4 +21,5 @@ installation =
 
 Current tools include:
 
-    > Maptrix: visualization of matrices
+    > maptrix: visualization of matrices
+    > som: utils to work with Self-Organizing Maps
