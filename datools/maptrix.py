@@ -34,7 +34,7 @@ class Maptrix:
     def __init__(self, x, xlabels=False, ylabels=False, colorbar=True,
             cmap='summer'):
         y = np.zeros(x.shape)
-        for i in np.arange(x.shape[0]):
+        for i in np.arange(x.shape[1]):
             y[:, i] = x[:, i][:: -1]
         p = pl.pcolor(y, cmap=cmap)
         if colorbar:
