@@ -39,12 +39,11 @@ class Maptrix:
     '''
     def __init__(self, x, xlabels=False, ylabels=False, colorbar=True,
             cmap='summer'):
-        y = np.zeros(x.shape)
-        for i in np.arange(y.shape[1]):
-            y[:, i] = x[:, i][:: -1]
+        y = align_array(x)
         p = pl.pcolor(y, cmap=cmap)
         if colorbar:
-            c = pl.colorbar()
+            c = pl.colorbar(ticks=np.arange(np.min(y), np.max(y), \
+                    (np.max(y) - np.min(y))/8.), format='%0.5f')
         if not xlabels:
             xlabels=['']*y.shape[0]
         self.xticks(xlabels, p)
@@ -87,6 +86,26 @@ class Maptrix:
 
     def save(self, path):
         pl.savefig(path)
+        return path
+
+def align_array(x):
+    '''
+    Modify the array to display properly in Matplotlib's 'pcolor'
+    ...
+    
+    Arguments
+    ---------
+    x       : array
+             Input array
+    Attributes
+    ----------
+    y       : array
+              Modified array in which columns have been reversed
+    '''
+    y = np.zeros(x.shape)
+    for i in np.arange(y.shape[1]):
+        y[:, i] = x[:, i][:: -1]
+    return y
 
 if __name__ == '__main__':
     z = np.zeros((10, 20))
