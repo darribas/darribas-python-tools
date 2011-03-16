@@ -44,12 +44,13 @@ class Maptrix:
         if colorbar:
             c = pl.colorbar(ticks=np.arange(np.min(y), np.max(y), \
                     (np.max(y) - np.min(y))/8.), format='%0.3f', \
-                    spacing='proportional')
+                    spacing='proportional', orientation='horizontal')
         if not xlabels:
             xlabels=['']*y.shape[0]
         self.xticks(xlabels, p)
         if not ylabels:
             ylabels=['']*y.shape[1]
+
         self.yticks(ylabels, p)
         self.p = p
         self.x = x
