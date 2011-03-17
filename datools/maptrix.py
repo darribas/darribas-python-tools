@@ -43,10 +43,11 @@ class Maptrix:
         p = pl.pcolor(y, cmap=cmap)
         if colorbar:
             c = pl.colorbar(ticks=np.arange(np.min(y), np.max(y), \
-                    (np.max(y) - np.min(y))/8.), format='%0.3f', \
+                    (np.max(y) - np.min(y))/5.), format='%0.3f', \
                     spacing='proportional', orientation='horizontal')
         if not xlabels:
             xlabels=['']*y.shape[0]
+        pl.xticks(xlabels, size='small', rotation=45)
         self.xticks(xlabels, p)
         if not ylabels:
             ylabels=['']*y.shape[1]
@@ -64,8 +65,8 @@ class Maptrix:
         plotobj.axes.xaxis.set_major_locator(pl.MaxNLocator(len(l)+1))
         plotobj.axes.set_xticklabels(l)
         try:
-            plotobj.axes.tick_params(length=0, width=0, labelbottom=False,
-                labeltop=True)
+            plotobj.axes.tick_params(length=0, width=0, labelbottom=True,
+                labeltop=False)
         except:
             print 'It was not possible to tweak tick parameters'
         return plotobj
