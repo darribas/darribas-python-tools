@@ -42,7 +42,7 @@ class Maptrix:
         y = align_array(x)
         p = pl.pcolor(y, cmap=cmap)
         if colorbar:
-            c = pl.colorbar(ticks=np.arange(np.min(y), np.max(y), \
+            c = pl.colorbar(p, ticks=np.arange(np.min(y), np.max(y), \
                     (np.max(y) - np.min(y))/5.), format='%0.3f', \
                     spacing='proportional', orientation='horizontal')
         if not xlabels:
