@@ -38,12 +38,15 @@ class Maptrix:
                   not work if 'show' has been initialized
     '''
     def __init__(self, x, xlabels=False, ylabels=False, colorbar=True,
-            cmap='summer'):
+            cmap='summer', draw_pcolor=True):
+        p = None
         y = align_array(x)
-        p = pl.pcolor(y, cmap=cmap)
+        if draw_pcolor:
+            p = pl.pcolor(y, cmap=cmap)
         if colorbar:
-            c = pl.colorbar(ticks=np.arange(np.min(y), np.max(y), \
-                    (np.max(y) - np.min(y))/5.), format='%0.3f', \
+            sep = (np.max(y) - np.min(y))/4.
+            ran = np.arange(np.min(y), np.max(y) + sep, sep)
+            c = pl.colorbar(p, ticks=ran, format='%0.3f', \
                      orientation='horizontal')
         if not xlabels:
             xlabels=['']*y.shape[0]
@@ -51,14 +54,18 @@ class Maptrix:
         pl.xlabel(xlabels, size='small', rotation=45)
         pl.xticks(xlabels, size='small', rotation=45)
         '''
-        self.xticks(xlabels, p)
         if not ylabels:
             ylabels=['']*y.shape[1]
 
-        self.yticks(ylabels, p)
+        if draw_pcolor:
+            self.xticks(xlabels, p)
+            self.yticks(ylabels, p)
+
         self.p = p
         self.x = x
         self.y = y
+        self.xlabels = xlabels
+        self.ylabels = ylabels
 
     def xticks(self, names, plotobj, empty=False):
         l = [' '] * (len(names)*2 + 1)
