@@ -44,7 +44,7 @@ class Maptrix:
         if colorbar:
             c = pl.colorbar(ticks=np.arange(np.min(y), np.max(y), \
                     (np.max(y) - np.min(y))/5.), format='%0.3f', \
-                     orientation='vertical')
+                     orientation='horizontal')
         if not xlabels:
             xlabels=['']*y.shape[0]
         '''
