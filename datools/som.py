@@ -53,7 +53,6 @@ def stdDat(datIN_link, names=True):
     a = []
     for line in lines:
         line = line.strip('\n').split(' ')
-        print line[-2]
         a.append(line)
     a = N.array(a)
 
