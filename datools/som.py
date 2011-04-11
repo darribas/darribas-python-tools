@@ -3,6 +3,7 @@ Utils to work with Self-Organizing Maps
 '''
 
 import numpy as N
+import numpy.ma as ma
 
 def csv2dat(csv_link):
     '''
@@ -52,6 +53,7 @@ def stdDat(datIN_link, names=True):
     a = []
     for line in lines:
         line = line.strip('\n').split(' ')
+        print line[-2]
         a.append(line)
     a = N.array(a)
 
