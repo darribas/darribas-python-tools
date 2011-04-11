@@ -55,16 +55,17 @@ def stdDat(datIN_link, names=True):
         line = line.strip('\n').split(' ')
         a.append(line)
     a = N.array(a)
+    print a.shape
 
     data, names = a[:, :-1], N.array([a[:, -1]]).T
     z = getZmv(data, 'x')
-    z = N.hstack((z, names))
+    #z = N.hstack((z, names))
 
     fo = open(datIN_link + 'Z.dat', 'w')
     fo.write(h0 + h1)
-    for line in z:
-        line = ' '.join(line)
-        line += '\n'
+    for row, name in zip(z, names):
+        line = ' '.join(row)
+        line += ' %s\n'%name
         fo.write(line)
     fo.close()
     return 'Done'
