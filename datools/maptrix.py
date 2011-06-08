@@ -38,7 +38,7 @@ class Maptrix:
                   not work if 'show' has been initialized
     '''
     def __init__(self, x, xlabels=False, ylabels=False, colorbar=True,
-            cmap='summer', draw_pcolor=True):
+            cmap='summer', draw_pcolor=True, orientation='horizontal'):
         p = None
         y = align_array(x)
         if draw_pcolor:
@@ -47,7 +47,7 @@ class Maptrix:
             sep = (np.max(y) - np.min(y))/4.
             ran = np.arange(np.min(y), np.max(y) + sep, sep)
             c = pl.colorbar(p, ticks=ran, format='%0.3f', \
-                     orientation='horizontal')
+                     orientation=orientation)
         if not xlabels:
             xlabels=['']*y.shape[0]
         '''
@@ -119,6 +119,58 @@ def align_array(x):
     for i in np.arange(y.shape[1]):
         y[:, i] = x[:, i][:: -1]
     return y
+
+def set_h_tags(y, tags, subplot, fontsize=15, rotation=0, weight=None,
+        verticalalignment='center', horizontalalignment='center'):
+    '''
+    Set horizontal tags
+    ...
+
+    Arguments
+    ---------
+    y           : float
+                  Horizontal axis along which tags will be plotted
+    tags        : list
+                  List of strings to be plotted
+    subplot     : subplot
+                  Pylab subplot object
+    ...         : other text parameters
+    '''
+    n = len(tags)
+    sep = 1. / (2*n)
+    for i, tag in zip(range(n), tags):
+        x = float(i)/n + sep
+        pl.text(x, y, tag, transform=subplot.transAxes,
+                fontsize=fontsize, weight=weight, rotation=rotation,
+                verticalalignment=verticalalignment,
+                horizontalalignment=horizontalalignment)
+    return 'ph'
+
+def set_v_tags(x, tags, subplot, fontsize=15, rotation=0, weight=None,
+        verticalalignment='center', horizontalalignment='center'):
+    '''
+    Set vertical tags
+    ...
+
+    Arguments
+    ---------
+    y           : float
+                  Vertical axis along which tags will be plotted
+    tags        : list
+                  List of strings to be plotted
+    subplot     : subplot
+                  Pylab subplot object
+    ...         : other text parameters
+    '''
+    n = len(tags)
+    sep = 1. / (2*n)
+    for i, tag in zip(range(n), tags):
+        y = float(i)/n + sep
+        pl.text(x, y, tag, transform=subplot.transAxes,
+                fontsize=fontsize, weight=weight, rotation=rotation,
+                verticalalignment=verticalalignment,
+                horizontalalignment=horizontalalignment)
+    return 'ph'
 
 if __name__ == '__main__':
     z = np.zeros((10, 20))
