@@ -31,7 +31,6 @@ def load_dat(dat_link):
     for col in range(a.shape[1]):
         try:
             af[:, col] = map(float, a[:, col])
-            print 'Converting'
         except:
             print 'Column with strings'
     return af
