@@ -5,6 +5,29 @@ Utils to work with Self-Organizing Maps
 import numpy as N
 import numpy.ma as ma
 
+def load_dat(dat_link):
+    '''
+    Load the data of a .dat file into a numpy array
+
+    Arguments
+    ---------
+    dat_link        : string
+                      Path to the file
+
+    Returns
+    -------
+    a               : ndarray
+                      Numpy array with the data from the .dat file
+    '''
+    a = []
+    dat = open(dat_link)
+    for line in dat:
+        if line[0] != '#':
+            line = line.strip('\n').strip('\r').split(' ')
+            a.append(line)
+    dat.close()
+    return N.array(a[1:])
+
 def csv2dat(csv_link):
     '''
     Convert a csv file into .dat format suitable for SOM_PAK and other
