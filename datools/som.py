@@ -26,7 +26,15 @@ def load_dat(dat_link):
             line = line.strip('\n').strip('\r').split(' ')
             a.append(line)
     dat.close()
-    return N.array(a[1:])
+    a = N.array(a[1:])
+    af = N.zeros(a.shape)
+    for col in range(a.shape[1]):
+        try:
+            af[:, col] = map(float, a[:, col])
+            print 'Converting'
+        except:
+            print 'Column with strings'
+    return af
 
 def csv2dat(csv_link):
     '''
