@@ -54,7 +54,7 @@ def csv2dat(csv_link):
     ofo = open(csv_link + '.dat', 'w')
     head = fo.readline().replace(',', ' ')
     ofo.write('#' + head)
-    ofo.write(str(len(head.strip('\n').split(' ')) - 2) + '\n') #-2 because of '#' and names column
+    ofo.write(str(len(head.strip('#').strip('\n').split(' ')) - 1) + '\n') 
     for line in fo:
         ofo.write(line.replace(',', ' '))
     ofo.close()
