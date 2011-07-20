@@ -46,9 +46,9 @@ def csv2dat(csv_link):
     Arguments
     ---------
     csv_link        : string
-                      path of the csv to be converted. The .dat file will be
-                      created at the same location with the same name but .dat
-                      extension
+                      path of the csv (without extension) to be converted. The
+                      .dat file will be created at the same location with the
+                      same name but .dat extension
     '''
     fo = open(csv_link + '.csv', 'r')
     ofo = open(csv_link + '.dat', 'w')
