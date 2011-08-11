@@ -4,7 +4,10 @@ work with data
 '''
 
 
-def fix_file(file):
+def fixXLSfile(file):
+    '''
+    Replace '\r' by '\n' in csv's created by MS Excel
+    '''
     fo = open(file)
     foo = open(file[:-4] + '_fixed.csv', 'w')
     lines = fo.readlines()[0]
