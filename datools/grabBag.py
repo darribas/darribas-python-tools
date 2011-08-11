@@ -4,16 +4,17 @@ work with data
 '''
 
 
-def fixXLSfile(file):
+def fixXLScsv(file):
     '''
     Replace '\r' by '\n' in csv's created by MS Excel
     '''
     fo = open(file)
-    foo = open(file[:-4] + '_fixed.csv', 'w')
+    out_path = file[:-4] + '_fixed.csv'
+    foo = open(out_path, 'w')
     lines = fo.readlines()[0]
     foo.write(lines.replace('\r', '\n'))
     foo.close()
     fo.close()
-    return 'Done!'
+    return out_path
 
 
