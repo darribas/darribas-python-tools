@@ -146,11 +146,14 @@ class Maptrix_ma:
     '''
     def __init__(self, x, xlabels=False, ylabels=False, colorbar=True,
             cmap='summer', draw_pcolor=True, orientation='horizontal',
-            nancol='0.5'):
+            nancol='0.5', figsize=None):
         p = None
         mx = np.ma.array(x, mask=np.isnan(x))
         y = align_ma_array(mx)
-        fig = pl.figure()
+        if figsize:
+            fig = pl.figure(figsize=figsize)
+        else:
+            fig = pl.figure()
         ax = fig.add_subplot(111)
         ax.set_axis_bgcolor(nancol)
         pl.pcolor(np.ones(y.data.shape), cmap=mtl.cm.Greens)
