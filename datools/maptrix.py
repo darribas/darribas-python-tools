@@ -42,8 +42,12 @@ class Maptrix:
             cmap='summer', draw_pcolor=True, orientation='horizontal'):
         p = None
         y = align_array(x)
+        fig = pl.figure()
+        ax = fig.add_subplot(111)
         if draw_pcolor:
             p = pl.pcolor(y, cmap=cmap)
+            ax.set_xlim(xmax=x.shape[1])
+            ax.set_ylim(ymax=x.shape[0])
         if colorbar:
             sep = (np.max(y) - np.min(y))/4.
             ran = np.arange(np.min(y), np.max(y) + sep, sep)
@@ -149,8 +153,11 @@ class Maptrix_ma:
         fig = pl.figure()
         ax = fig.add_subplot(111)
         ax.set_axis_bgcolor(nancol)
+        pl.pcolor(np.ones(y.data.shape), cmap=mtl.cm.Greens)
         if draw_pcolor:
             p = pl.pcolor(y, cmap=cmap)
+            ax.set_xlim(xmax=x.shape[1])
+            ax.set_ylim(ymax=x.shape[0])
         if colorbar:
             sep = (np.max(y) - np.min(y))/4.
             ran = np.arange(np.min(y), np.max(y) + sep, sep)
@@ -301,7 +308,7 @@ def set_v_tags(x, tags, subplot, fontsize=15, rotation=0, weight=None,
     return 'ph'
 
 if __name__ == '__main__':
-    z = np.zeros((10, 20))
+    z = np.zeros((59, 5))
     z[0, 0] = 100
-    z[9, 19] = 10
-    m = Maptrix(z).show()
+    z[9, 3] = 100
+    m = Maptrix(z)
