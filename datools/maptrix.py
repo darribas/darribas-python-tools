@@ -156,7 +156,6 @@ class Maptrix_ma:
             fig = pl.figure()
         ax = fig.add_subplot(111)
         ax.set_axis_bgcolor(nancol)
-        pl.pcolor(np.ones(y.data.shape), cmap=mtl.cm.Greens)
         if draw_pcolor:
             p = pl.pcolor(y, cmap=cmap)
             ax.set_xlim(xmax=x.shape[1])
