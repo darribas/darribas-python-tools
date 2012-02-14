@@ -124,6 +124,8 @@ class Maptrix_ma:
                   each square
     colorbar    : boolean
                   When True (default) adds a scale colorbar to the matrix
+    draw        : boolean
+                  If True (default), creates and draws the the figure
     cmap        : string
                   Color set to apply to the matrix. Works as in matplotlib
     nancol      : string
@@ -145,44 +147,43 @@ class Maptrix_ma:
                   not work if 'show' has been initialized
     '''
     def __init__(self, x, xlabels=False, ylabels=False, colorbar=True,
-            cmap='summer', draw_pcolor=True, orientation='horizontal',
+            cmap='summer', draw=True, orientation='horizontal',
             nancol='0.5', figsize=None):
         p = None
         mx = np.ma.array(x, mask=np.isnan(x))
         y = align_ma_array(mx)
-        if figsize:
-            fig = pl.figure(figsize=figsize)
-        else:
-            fig = pl.figure()
-        ax = fig.add_subplot(111)
-        ax.set_axis_bgcolor(nancol)
-        if draw_pcolor:
+        if draw:
+            if figsize:
+                fig = pl.figure(figsize=figsize)
+            else:
+                fig = pl.figure()
+            ax = fig.add_subplot(111)
+            ax.set_axis_bgcolor(nancol)
             p = pl.pcolor(y, cmap=cmap)
             ax.set_xlim(xmax=x.shape[1])
             ax.set_ylim(ymax=x.shape[0])
-        if colorbar:
-            sep = (np.max(y) - np.min(y))/4.
-            ran = np.arange(np.min(y), np.max(y) + sep, sep)
-            c = pl.colorbar(p, ticks=ran, format='%0.3f', \
-                     orientation=orientation)
-        if not xlabels:
-            xlabels=['']*y.shape[0]
-        '''
-        pl.xlabel(xlabels, size='small', rotation=45)
-        pl.xticks(xlabels, size='small', rotation=45)
-        '''
-        if not ylabels:
-            ylabels=['']*y.shape[1]
+            if colorbar:
+                sep = (np.max(y) - np.min(y))/4.
+                ran = np.arange(np.min(y), np.max(y) + sep, sep)
+                c = pl.colorbar(p, ticks=ran, format='%i', \
+                         orientation=orientation)
+            if not xlabels:
+                xlabels=['']*y.shape[0]
+            '''
+            pl.xlabel(xlabels, size='small', rotation=45)
+            pl.xticks(xlabels, size='small', rotation=45)
+            '''
+            if not ylabels:
+                ylabels=['']*y.shape[1]
 
-        if draw_pcolor:
             self.xticks(xlabels, p)
             self.yticks(ylabels, p)
 
-        self.p = p
+            self.p = p
+            self.xlabels = xlabels
+            self.ylabels = ylabels
         self.mx = mx
         self.y = y
-        self.xlabels = xlabels
-        self.ylabels = ylabels
 
     def xticks(self, names, plotobj, empty=False):
         l = [' '] * (len(names)*2 + 1)
