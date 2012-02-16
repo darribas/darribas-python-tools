@@ -128,6 +128,8 @@ class Maptrix_ma:
                   Color set to apply to the matrix. Works as in matplotlib
     nancol      : string
                   Color for NaN values. Defaults to grey.
+    figsize     : tuple
+                  Tuple with width and height of the figure to be created
 
     Attributes
     ----------
