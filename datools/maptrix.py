@@ -167,7 +167,7 @@ class Maptrix_ma:
             if colorbar:
                 sep = (np.max(y) - np.min(y))/4.
                 ran = np.arange(np.min(y), np.max(y) + sep, sep)
-                c = pl.colorbar(p, ticks=ran, format='%i', \
+                c = pl.colorbar(p, ticks=ran, format='%.2f', \
                          orientation=orientation)
             if not xlabels:
                 xlabels=['']*y.shape[0]
