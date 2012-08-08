@@ -184,6 +184,7 @@ class Maptrix_ma:
             self.p = p
             self.xlabels = xlabels
             self.ylabels = ylabels
+            self.fig = fig
         self.mx = mx
         self.y = y
 
