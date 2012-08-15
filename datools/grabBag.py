@@ -3,6 +3,8 @@ Different utils with no common topic, just to make your life easier when you
 work with data
 '''
 
+import os
+
 def copy_shp(shp_in, shp_out):
     '''
     Copy files from a shapefile other than the dbf
